@@ -29,3 +29,16 @@ do_build() {
 do_check() {
     make test
 }
+
+do_setup_environment() {
+    # This invocation only works for XML::Writer; perl modules may install
+    # files in other locations depending on their components:
+    # lib/perl5/site_perl/5.28.0/x86_64-linux-thread-multi
+    # lib/perl5/site_perl/5.28.0 (this is where XML/Writer.pm goes)
+    # lib/perl5/5.28.0/x86_64-linux-thread-multi
+    # lib/perl5/5.28.0
+    local perl=$(pkg_path_for core/perl)
+    [[ $perl =~ core\/perl\/(.*)\/ ]] && local perlver=${BASH_REMATCH[1]}
+    build_line "Adding $pkg_prefix/lib/perl5/site_perl/$perlver to PERL5LIB"
+    push_runtime_env PERL5LIB $pkg_prefix/lib/perl5/site_perl/$perlver
+}
