@@ -1,6 +1,6 @@
 pkg_name=perl-xml-writer
 pkg_origin=chadcarr
-pkg_maintainer="Chad Carr <ccarr@franzdoodle.com>"
+pkg_maintainer="Chad Carr ccarr@franzdoodle.com"
 pkg_version=0.625
 pkg_license=(unrestricted)
 pkg_description="Perl XML::Writer module"
